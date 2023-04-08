@@ -19,7 +19,7 @@ class Images extends Dbh {
         $rowsReturned = $statement->fetchColumn();
         
        if($rowsReturned >= 4) {
-            echo "user already has this shti lol";
+            echo "limit : 4 pictures";
        } else {
         $statement =  $this->create_connection()->prepare("INSERT INTO Images (image, name, userId)
         VALUES (:image, :name, :userId)");

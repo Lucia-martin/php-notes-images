@@ -10,8 +10,7 @@ if(isset($_POST['resetPassword'])) {
     $sentEmail = $resetForm->sendEmail($_POST['email']);
 
     echo $sentEmail;
-    // echo $emailSent;
-//     header("Location: home.php");
+
 }
 
 ?>
@@ -27,6 +26,11 @@ if(isset($_POST['resetPassword'])) {
 
 </head>
 <body>
+    <a href="./home.php">
+    <button>
+        Log in
+    </button>
+    </a>
     
 </body>
 </html>

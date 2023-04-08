@@ -104,7 +104,7 @@ class LoginForm extends Dbh{
             $mail->addReplyTo('luciammperu@gmail.com', 'Lucia Martin');
             $mail->addAddress($email);
             $mail->Subject = 'New Password for Locked Account';
-            $message = "<p>Your account has been locked due to too many attempts. </p><p>To reactivate your account, click the link below and sign in with your new password: $password </p><a href='http://localhost:3000/final-project/index.php?token=$token'>Re-activate my Account</a>";
+            $message = "<p>Your account has been locked due to too many attempts. </p><p>To reactivate your account, click the link below and sign in with your new password: $password </p><a href='https://php-notes-images-production.up.railway.app/index.php?token=$token'>Re-activate my Account</a>";
             $mail->msgHTML($message);
     
             $mail->send();

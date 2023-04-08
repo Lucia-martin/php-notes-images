@@ -47,7 +47,7 @@ class ResetForm extends Dbh {
         $mail->Subject = 'Password Reset';
         //Read an HTML message body from an external file, convert referenced images to embedded,
         //convert HTML into a basic plain-text alternative body
-        $message = "<p>We received a password reset request for this email. </p><p>Your new password is: $password </p><p>Click the link below to activate this as your new password.</p><a href='http://localhost:3000/final-project/'>Activate my Password</a>";
+        $message = "<p>We received a password reset request for this email. </p><p>Your new password is: $password </p><p>Click the link below to activate this as your new password.</p><a href='https://php-notes-images-production.up.railway.app/'>Activate my Password</a>";
         $mail->msgHTML($message);
 
         if (!$mail->send()) {
@@ -55,7 +55,7 @@ class ResetForm extends Dbh {
             return "something went wrong resetting your password";
         } else {
             $this->resetPassword($password, $email);
-            return 'Message sent to ' . $email;
+            return '<br>&nbsp;Message sent to ' . $email ;
         }
         
     }

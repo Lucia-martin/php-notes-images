@@ -60,7 +60,7 @@ class SignupForm extends Dbh{
         $mail->addReplyTo('luciammperu@gmail.com', 'Lucia Martin');
         $mail->addAddress($email);
         $mail->Subject = 'Activate Your Account';
-        $message = "<p>Welcome to this php Note/Mood board!</p><p>Click the link below to activate your account so you can log in.</p><a href='http://localhost:3000/final-project/index.php?token=$token'>Activate my Account</a>";
+        $message = "<p>Welcome to this php Note/Mood board!</p><p>Click the link below to activate your account so you can log in.</p><a href='https://php-notes-images-production.up.railway.app/index.php?token=$token'>Activate my Account</a>";
         $mail->msgHTML($message);
 
         $mail->send();

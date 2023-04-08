@@ -11,8 +11,6 @@
     if(isset($_SESSION['username'])){
         $timeLoggedIn = time() - $_SESSION['loginTime'];
 
-        //CHANGE THIS OMG
-        // change this time
         if($timeLoggedIn > 600) {
             header('Location: logout.php');
         } 
@@ -38,27 +36,28 @@
     $noteButton = "New Note";
 
     if(isset($_POST['imgSubmit']) && isset($_FILES['image'])){
-        $imgName = $_FILES['image']['name'];
-        $img = file_get_contents($_FILES['image']['tmp_name']);
-        $imgPosted = $imageClass->postImage($userId, $img, $imgName);
-        
-        // unset($_FILES);
-        header("Location: dashboard.php");
-        // echo "we are in the img submit thing";
+        if($_FILES['image']['tmp_name']){
+            $imgName = $_FILES['image']['name'];
+            $img = file_get_contents($_FILES['image']['tmp_name']);
+            $imgPosted = $imageClass->postImage($userId, $img, $imgName);
+            
+            header("Location: dashboard.php");
+        }
+       
     } 
-
-    if(isset($_GET['id'])){
-        $currentNote = $noteClass->getNoteById($_GET['id']);
-        $noteButton = "Update Note";
-    }
-
+    
     if(isset($_GET['imgId'])){
         $imageClass->deleteImage($_GET['imgId']);
         header("Location: dashboard.php");
 
     }
 
+    if(isset($_GET['id'])){
+        $currentNote = $noteClass->getNoteById($_GET['id']);
+        $noteButton = "Update Note";
+    }
 
+   
     if(isset($_POST['noteSubmit'])) {
         //get input from user
         $note = $_POST['note'];
@@ -164,7 +163,7 @@
                      <div>                
                         <?php echo '<img height="220px" src="data:image/jpeg;base64,'.base64_encode($image['image']).'"/>';?>
                         <br>
-                        <a href= "?id=<?php echo $image['id']?>?" > 
+                        <a href= "?imgId=<?php echo $image['id']?>" > 
                         <svg class="close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="15px" fill="#95A4E9"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm79 143c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
                         </a>
                     </div>
@@ -189,7 +188,6 @@
                     <a href= "?id=<?php echo $note['id']?>" >Edit Note </a>
                     <br>
                     <br>
-                    <!-- <a href= "?id=<?php echo $note['id']?>" >Delete Note </a> -->
                 </div>
                 <?php }  ?>
             </div>
