@@ -10,7 +10,6 @@
 
     if(isset($_SESSION['username'])){
         $timeLoggedIn = time() - $_SESSION['loginTime'];
-
         if($timeLoggedIn > 600) {
             header('Location: logout.php');
         } 
